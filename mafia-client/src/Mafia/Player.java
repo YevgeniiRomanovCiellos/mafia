@@ -41,6 +41,10 @@ public class Player extends Thread {
 				
 					if(response.get("action").equals("chat"))
 					{
+						//if(response.get("mafia"))
+						//{
+							
+						//}
 						st=response.get("message")+"\n";
 					}
 				}
@@ -65,9 +69,12 @@ public class Player extends Thread {
 	public void sendMessage(String str)
 	{
 		String st=str;
-		//Map
+		Map<String,String> m=new HashMap<String,String>();
+		m.put("action", "chat");
+		m.put("message", "st");
+		
 		try {
-			(new PrintStream(c.getOutputStream())).println(st);
+			(new PrintStream(c.getOutputStream())).println(yaml.dump(m));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
