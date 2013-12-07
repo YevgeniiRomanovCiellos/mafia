@@ -14,7 +14,9 @@ public class User extends Thread {
 	private Socket socket;
 	private BufferedReader in;
 	private Yaml yaml = new Yaml();
-	private int port;
+	public int port;
+
+	public String role;
 
 	public User(Socket s) throws IOException {
 		socket = s;
@@ -38,19 +40,21 @@ public class User extends Thread {
 			boolean work = true;
 			while (work) {
 				String str = in.readLine();
-				System.out.println("Excepted:");
+				GUI.memo.append( "\n" );
+				GUI.memo.append( "Excepted:" );
+				GUI.memo.append( "\n" );
 				if (str == "END") {
 					socket.close();
 					UserList.user_list.remove(port);
 					work = false;
 					break;
 				} else {
-
-					System.out.println(str);
+					
+					GUI.memo.append( str );
 					Map<String, String> response;
 					
 					response = (HashMap<String, String>) yaml.load(str);
-					Analizer.analize(response);
+					Analizer.analize(response, this);
 					
 					
 				//	UserList.send_message((String) yaml.dump(response));

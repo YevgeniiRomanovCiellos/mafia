@@ -26,7 +26,7 @@ public class View extends JFrame {
 	public JTextField message;
 	public JButton send,active;
 	public Container c;
-	public JTextArea memo;
+	public static JTextArea memo;
 	public JScrollPane scrollBar;
 	public JLabel card;
 	
@@ -78,28 +78,9 @@ public class View extends JFrame {
 		
 		c.add(gamePanel);
 		c.add(grouping);
-		
-		
-		
-		
-		
-		
-		time=new Timer();
-		 TimerTask task = new TimerTask() {
-		      public void run()
-		      {
-		    	update();
-		      }
-		 };
-		// time.schedule( task, 100 );
-		 time.scheduleAtFixedRate(task, 10, 100);
+
 	}
 	
-	public void update()
-	{
-		if (_model.getText()!=null)
-			memo.setText(_model.getText());
-	}
 
 }
 

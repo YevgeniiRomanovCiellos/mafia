@@ -9,7 +9,7 @@ public class Main {
 	static Controller c;
 	public static void main(String[] args) {
 
-
+		
 		m=new Model();
 		v=new View(m);
 		c=new Controller(v,m);

@@ -1,8 +1,10 @@
 package Mafia;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -21,61 +23,68 @@ public class Player extends Thread {
 	public PrintWriter out;
 	private Yaml yaml = new Yaml();
 	String st;
-	
-	public Player(Socket c)
-	{
-		
-		
-		this.c=c;
-	
-		Map<String, String> response;
-		
-		
-			
-			try {
-				in = new BufferedReader(new InputStreamReader(c.getInputStream()));
-				while(true)
-				{
-					String str = in.readLine();
-					response = (HashMap<String, String>) yaml.load(str);
-				
-					if(response.get("action").equals("chat"))
-					{
-						//if(response.get("mafia"))
-						//{
-							
-						//}
-						st=response.get("message")+"\n";
-					}
-				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-	}
-	
-	public void run()
-	{
-		
-		
+
+	public Player(Socket c) {
+
+		this.c = c;
+		start();
 	}
 
-	public String getMessage() {
-		// TODO Auto-generated method stub
-		return st;
-	}
-	
-	public void sendMessage(String str)
-	{
-		String st=str;
-		Map<String,String> m=new HashMap<String,String>();
-		m.put("action", "chat");
-		m.put("message", "st");
-		
+	public void run() {
+
+		Map<String, String> response;
+
 		try {
-			(new PrintStream(c.getOutputStream())).println(yaml.dump(m));
-		} catch (IOException e) {
+			out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(
+					c.getOutputStream())), true);
+			in = new BufferedReader(new InputStreamReader(c.getInputStream()));
+		} catch (IOException e1) {
+			// TODO Автоматически созданный блок catch
+			e1.printStackTrace();
+		}
+		
+		
+		
+		
+		while (true) {
+			try {
+				System.out.println("Server litsening... ");
+				String str = in.readLine();
+				System.out.println("Message Exepted ");
+				System.out.println(str);
+				if (!str.isEmpty()) {
+					response = (HashMap<String, String>) yaml.load(str);
+					System.out.println("LOL ");
+					if (response.get("action").equals("chat")) {
+						View.memo.append(response.get("message"));
+						View.memo.append("\n");
+				
+					}
+				}
+				sleep(10);
+			} catch (NullPointerException e) {
+				// TODO Auto-generated catch block
+				// printStackTrace();
+				System.out.println("Beda");
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println("sleep Beda");
+			}
+		}
+
+	}
+
+
+
+	public void sendMessage(String str) {
+		String st = str;
+		Map<String, String> m = new HashMap<String, String>();
+		m.put("action", "chat");
+		m.put("message", "\"" + st + "\"");
+
+		try {
+			out.println(yaml.dump(m));
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

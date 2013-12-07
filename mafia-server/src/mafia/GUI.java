@@ -18,7 +18,7 @@ public class GUI extends JFrame {
 	int port;
 	JButton start,stop;
 	public static Container c;
-	public JTextArea memo;
+	public static JTextArea memo;
 	public JScrollPane scrollBar;
 	
 	public GUI() {

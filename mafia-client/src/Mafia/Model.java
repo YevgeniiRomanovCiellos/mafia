@@ -12,30 +12,30 @@ import org.yaml.snakeyaml.*;
 
 
 
-public class Model {
+public class Model extends Thread{
 
 	public Socket c;
-	public InetAddress adress;
 	public int port;
 	public Player p;
-	
-	
-	
 	
 	public Model()
 	{
 		
-		try{
-		
-		c=new Socket(adress,port);
-		p=new Player(c);
-		p.start();
-				
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	start();	
 
+	}
+	@Override
+	public void run() {
+		try{
+			
+			c=new Socket("127.0.0.1",8080);
+			System.out.println("connected/");
+			p=new Player(c);
+							
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 
 
@@ -49,9 +49,6 @@ public class Model {
 
 
 
-	public String getText() {
-		String st=p.getMessage();
-		return st;
-	}
+	
 
 }

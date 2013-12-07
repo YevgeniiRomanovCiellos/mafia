@@ -8,9 +8,10 @@ import java.net.*;
 public class Main {
 
 	static final int PORT = 8080;
+	public static boolean isPlaying = false;
 	private static GUI _gui;
 	public static void main(String[] args) throws IOException {
-		
+	
 		ServerSocket s ; 
 		s= new ServerSocket(PORT);
 		
