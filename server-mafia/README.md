@@ -2,5 +2,3 @@ mafia
 =====
 
 Mafia
-cool-server
-
