@@ -43,7 +43,7 @@ public class View extends JFrame {
 		memo=new JTextArea(20,50);
 		scrollBar = new JScrollPane(memo);
 		
-		send=new JButton("Отправить");
+		send=new JButton("Send");
 		message=new JTextField(40);
 		
 		gamePanel=new GamePane();

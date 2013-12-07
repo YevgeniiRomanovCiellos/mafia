@@ -1,5 +1,8 @@
 package Mafia;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 
 public class Controller {
@@ -15,6 +18,14 @@ public class Controller {
 		_model=m;
 		
 		v.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		_view.send.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}});
 	}
 
 }

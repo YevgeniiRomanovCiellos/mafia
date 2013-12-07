@@ -1,14 +1,25 @@
 package mafia;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.*;
 
 public class Main {
 
 	static final int PORT = 8080;
-
+	private static GUI _gui;
 	public static void main(String[] args) throws IOException {
-		ServerSocket s = new ServerSocket(PORT);
+		
+		ServerSocket s ; 
+		s= new ServerSocket(PORT);
+		
+		//GUI interests
+		_gui=new GUI();
+		_gui.show();
+		
+		//
+		
 		System.out.println("Server Started");
 		new MessagesSender();
 		try {
