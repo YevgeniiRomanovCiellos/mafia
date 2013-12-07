@@ -5,9 +5,12 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -21,10 +24,13 @@ public class View extends JFrame {
 	public ChatPane chatPanel;
 	public CardPane cardPanel;
 	public JTextField message;
-	public JButton send;
+	public JButton send,active;
 	public Container c;
 	public JTextArea memo;
 	public JScrollPane scrollBar;
+	public JLabel card;
+	
+	public Timer time;
 	
 	public View(Model m)
 	{
@@ -44,6 +50,8 @@ public class View extends JFrame {
 		scrollBar = new JScrollPane(memo);
 		
 		send=new JButton("Send");
+		active=new JButton("Active");
+		card=new JLabel("card");
 		message=new JTextField(40);
 		
 		gamePanel=new GamePane();
@@ -59,6 +67,9 @@ public class View extends JFrame {
 		chatPanel.add(message);
 		chatPanel.add(send);
 		
+		cardPanel.add(card);
+		cardPanel.add(active);
+		
 		
 		grouping.setLayout(new GridLayout(1,2));
         grouping.add(cardPanel);
@@ -68,12 +79,26 @@ public class View extends JFrame {
 		c.add(gamePanel);
 		c.add(grouping);
 		
-
+		
+		
+		
+		
+		
+		time=new Timer();
+		 TimerTask task = new TimerTask() {
+		      public void run()
+		      {
+		    	update();
+		      }
+		 };
+		// time.schedule( task, 100 );
+		 time.scheduleAtFixedRate(task, 10, 100);
 	}
 	
 	public void update()
 	{
-		
+		if (_model.getText()!=null)
+			memo.setText(_model.getText());
 	}
 
 }

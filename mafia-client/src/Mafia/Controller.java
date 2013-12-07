@@ -23,7 +23,8 @@ public class Controller {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
+
+				_model.sendMessage(_view.message.getText());
 				
 			}});
 	}

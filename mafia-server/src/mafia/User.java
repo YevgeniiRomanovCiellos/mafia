@@ -50,9 +50,10 @@ public class User extends Thread {
 					Map<String, String> response;
 					
 					response = (HashMap<String, String>) yaml.load(str);
+					Analizer.analize(response);
 					
-					System.out.println(response.get("message"));
-					UserList.send_message((String) yaml.dump(response));
+					
+				//	UserList.send_message((String) yaml.dump(response));
 
 				}
 			}
