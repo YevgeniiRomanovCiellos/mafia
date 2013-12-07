@@ -18,7 +18,7 @@ public class Player extends Thread {
 	/**
 	 * @param args
 	 */
-	public Socket c;
+	public static Socket c;
 	private BufferedReader in;
 	public PrintWriter out;
 	private Yaml yaml = new Yaml();
@@ -75,15 +75,10 @@ public class Player extends Thread {
 	}
 
 
-
 	public void sendMessage(String str) {
-		String st = str;
-		Map<String, String> m = new HashMap<String, String>();
-		m.put("action", "chat");
-		m.put("message", "\"" + st + "\"");
 
 		try {
-			out.println(yaml.dump(m));
+			out.println(str);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

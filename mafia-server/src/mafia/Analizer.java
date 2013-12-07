@@ -24,7 +24,7 @@ public class Analizer {
 			System.out.println("Stop send message : ");
 		}
 		
-		if(action == "redy"){
+		if(action.equals("ready")){
 			UserList.ready_users.put(user.port, user);
 			if(UserList.isUsersReady()){
 				try {
