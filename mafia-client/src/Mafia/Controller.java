@@ -35,9 +35,10 @@ public class Controller {
 					Map<String, String> m = new HashMap<String, String>();
 					m.put("action", "chat");
 					m.put("message", _view.message.getText() );
-					_model.sendMessage( yaml.dump(m));
+					_model.sendMessage(m);
 				
 			}});
+		
 		
 		
 		
@@ -48,9 +49,7 @@ public class Controller {
 			public void actionPerformed(ActionEvent arg0) {
 				Map<String, String> m = new HashMap<String, String>();
 				m.put("action", "ready");
-				m.put("user", Player.c.getPort()+"");
-					
-				_model.sendMessage( yaml.dump(m));
+				_model.sendMessage(m);
 			}
 		});
 	}

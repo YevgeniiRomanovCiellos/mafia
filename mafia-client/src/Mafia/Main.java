@@ -1,5 +1,7 @@
 package Mafia;
 
+import javax.swing.JOptionPane;
+
 
 
 public class Main {
@@ -10,7 +12,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		
-		m=new Model();
+		m=new Model(JOptionPane.showInputDialog("Enter username"));
 		v=new View(m);
 		c=new Controller(v,m);
 		

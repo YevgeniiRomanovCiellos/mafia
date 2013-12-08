@@ -53,6 +53,11 @@ public class GUI extends JFrame {
 		c.add(actionPanel);
 	}
 	
+	public static void println(String str) {
+		memo.append(str);
+		memo.append("\n");
+	}
+	
 	
 
 }

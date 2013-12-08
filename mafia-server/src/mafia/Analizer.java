@@ -24,6 +24,8 @@ public class Analizer {
 			System.out.println("Stop send message : ");
 		}
 		
+		
+		
 		if(action.equals("ready")){
 			UserList.ready_users.put(user.port, user);
 			if(UserList.isUsersReady()){
@@ -37,6 +39,12 @@ public class Analizer {
 		}
 		if (action == "game-action"){
 			
+		}
+		
+		if (action.equals("conection")){
+			user.username = response.get("username");
+			GUI.println("Add username");
+			GUI.println(user.username);
 		}
 		
 		} catch (Exception e) {

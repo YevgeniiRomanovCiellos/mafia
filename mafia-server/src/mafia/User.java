@@ -15,6 +15,7 @@ public class User extends Thread {
 	private BufferedReader in;
 	private Yaml yaml = new Yaml();
 	public int port;
+	String username = null;
 
 	public String role;
 
@@ -25,13 +26,14 @@ public class User extends Thread {
 		// Включение автосброса буферов:
 		out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(
 				socket.getOutputStream())), true);
-
+		
+		port = socket.getPort();
 		// Если какой либо, указанный выше класс выбросит исключение
 		// вызывающая процедура ответственна за закрытие сокета
 		// В противном случае нить(поток) закроет его.
-
+				
 		start(); // Вызывает run()
-		port = socket.getPort();
+		
 		UserList.add_user(port, this);
 	}
 
