@@ -1,6 +1,4 @@
-
+*.class
 # Package Files #
 *.war
 *.ear
-mafia-server/bin*
-mafia-client/bin*
