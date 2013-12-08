@@ -10,6 +10,9 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 import org.yaml.snakeyaml.*;
 
 public class Model extends Thread {
@@ -75,8 +78,13 @@ public class Model extends Thread {
 					
 					if(response.get("action").equals("user-id")){
 						user_id = response.get("userid");
+						setRole(response.get("role"),user_id);
 					}
 					
+					if (response.get("action").equals("sendRoles"))
+					{
+						setRoles();
+					}
 					sleep(10);
 				}
 				
@@ -92,6 +100,19 @@ public class Model extends Thread {
 			}
 		}
 
+	}
+
+	private void setRoles() {
+		
+		View.gamePanel.add(new JLabel("test"));
+		
+	}
+
+	private void setRole(String string, String user_id) {
+		
+		View.card.setText(user_id);
+		ImageIcon icon = new ImageIcon("C:/Users/Xbox/Documents/GitHub/mafia/mafia-client/res/civilian.jpg");
+		View.card.setIcon(icon);
 	}
 
 	public void sendMessage(Map<String, String> m) {

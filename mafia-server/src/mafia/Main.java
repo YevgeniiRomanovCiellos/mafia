@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.*;
 
+import javax.swing.JFrame;
+
 public class Main {
 
 	static final int PORT = 8080;
@@ -18,6 +20,7 @@ public class Main {
 		//GUI interests
 		_gui=new GUI();
 		_gui.show();
+		_gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//
 		

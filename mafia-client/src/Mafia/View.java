@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,7 +21,7 @@ public class View extends JFrame {
 
 	private Model _model;
 	
-	public GamePane gamePanel;
+	public static GamePane gamePanel;
 	public ChatPane chatPanel;
 	public CardPane cardPanel;
 	public JTextField message;
@@ -28,7 +29,9 @@ public class View extends JFrame {
 	public Container c;
 	public static JTextArea memo;
 	public JScrollPane scrollBar;
-	public JLabel card;
+	public static JLabel card;
+	
+	
 	
 	public Timer time;
 	
@@ -51,7 +54,7 @@ public class View extends JFrame {
 		
 		send=new JButton("Send");
 		active=new JButton("Active");
-		card=new JLabel("card");
+		card=new JLabel();
 		message=new JTextField(40);
 		
 		gamePanel=new GamePane();
@@ -71,6 +74,8 @@ public class View extends JFrame {
 		cardPanel.add(active);
 		
 		
+		gamePanel.setLayout(new GridLayout(3,3));
+		
 		grouping.setLayout(new GridLayout(1,2));
         grouping.add(cardPanel);
         grouping.add(chatPanel);
@@ -78,6 +83,26 @@ public class View extends JFrame {
 		
 		c.add(gamePanel);
 		c.add(grouping);
+		
+		
+//////testing
+		
+		
+		ImageIcon icon = new ImageIcon("C:/Users/Xbox/Documents/GitHub/mafia/mafia-client/res/civilian.jpg");
+		
+		card.setIcon(icon);
+		card.setText("11");
+		
+		card.setSize(100,100);
+		
+		View.gamePanel.add(new JLabel("test"));
+		View.gamePanel.add(new JLabel("test"));
+		View.gamePanel.add(new JLabel("test"));
+		View.gamePanel.add(new JLabel("test"));
+		View.gamePanel.add(new JLabel("test"));
+		View.gamePanel.add(new JLabel("test"));
+		
+		
 
 	}
 	

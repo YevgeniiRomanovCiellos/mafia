@@ -9,6 +9,8 @@ public class Main {
 	static View v;
 	static Model m;
 	static Controller c;
+	
+	
 	public static void main(String[] args) {
 
 
