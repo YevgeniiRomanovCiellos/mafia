@@ -1,27 +1,27 @@
 package mafia;
 
 import java.awt.List;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+import org.yaml.snakeyaml.Yaml;
+
 public class Game {
+	boolean isSleeping=true;
 	public Game() throws InterruptedException {
-		//STOP ACCEPT USERS
-		//SEND USER ROLES
-		//slepp 10sek
-		//WAIT FOR  USER ACTIONS
+		
 		Main.isPlaying = true;
 		setRolesToUsers();
-		TimeUnit.SECONDS.sleep(10);
-		
 		sendRoles();
-//		TimeUnit.MINUTES.sleep(1);
+		TimeUnit.SECONDS.sleep(10);
+		stopSleeping();
 	}
-	
 	void setRolesToUsers(){
-		
 		int users = UserList.ready_users.size();
 		String[] roles = new String[users]; 
 		roles[0]= "mafia";
@@ -36,22 +36,24 @@ public class Game {
 			value.role = roles[i];
 			i++;
 		}
-
 	}
 	
 	void sendRoles(){
-		//Map<String, String> roles = new HashMap<String, String>();
-		List list = new List();	
-//		for(User value : UserList.ready_users.values()){
-//			value.role;
-//		}
+		 Yaml yaml = new Yaml();
+         Map<String, String> m = new HashMap<String, String> ();
+         Map<String, Object> e = new HashMap<String, Object> ();
+         ArrayList<Map> roles =  new ArrayList<Map>();
+         for(Map.Entry<Integer,User> values: UserList.ready_users.entrySet()){
+				Integer port = values.getKey();
+				User user = values.getValue();
+				m.put(port + "", user.role);
+				roles.add(m);
+			}
+         e.put("action", "sendRoles");
+         e.put("roles", roles);
 	}
 
-	
-
 	public static final Random gen = new Random();
-	 
-	// version for array of references
 	public static void shuffle (Object[] array) {
 	    int n = array.length;
 	    while (n > 1) {
@@ -61,4 +63,16 @@ public class Game {
 	        array[k] = temp;
 	    }
 	}
+	
+	
+	public void stopSleeping() {
+		TimerTask isNotSleeping = new TimerTask() {
+			public void run() {
+			isSleeping=false;	
+			}
+		};
+		Timer time = new Timer();
+		time.schedule(isNotSleeping, 10000);
+	}	
+	
 }
