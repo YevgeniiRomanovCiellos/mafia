@@ -50,6 +50,8 @@ public class Controller {
 				Map<String, String> m = new HashMap<String, String>();
 				m.put("action", "ready");
 				_model.sendMessage(m);
+				_view.active.setEnabled(false);
+				_view.active.setText("Loading");
 			}
 		});
 	}
