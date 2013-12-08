@@ -2,6 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="libs"/>
+	<classpathentry exported="true" kind="lib" path="libs"/>
+	<classpathentry kind="lib" path="/home/eugene/Downloads/google-gson-2.2.4-release.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

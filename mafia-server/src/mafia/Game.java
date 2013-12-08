@@ -53,14 +53,33 @@ public class Game {
          Map<String, String> m = new HashMap<String, String> ();
          Map<String, Object> e = new HashMap<String, Object> ();
          ArrayList<Map> roles =  new ArrayList<Map>();
+         
+// 		for(User value : UserList.ready_users.values()){			
+// 			m.put("userid", value.port + "");
+//			m.put("role", value.role);
+//			m.put("username", value.username);
+//			roles.add(m);
+//		}
+ 		
          for(Map.Entry<Integer,User> values: UserList.ready_users.entrySet()){
 				Integer port = values.getKey();
 				User user = values.getValue();
-				m.put(port + "", user.role);
+				m.put("userid", user.port + "");
+				m.put("role", user.role);
+				m.put("username", user.username);
 				roles.add(m);
+				GUI.println("Ready Users");
+				GUI.println(user.port + "");
 			}
-         e.put("action", "sendRoles");
-         e.put("roles", roles);
+         GUI.println(roles.size()+"");
+                  
+        e.put("roles", roles);
+        e.put("action", "sendRoles");
+		GUI.println((String)yaml.dump(roles));
+
+         GUI.println("Sending roles");
+         GUI.println((String)yaml.dump(e));
+         UserList.send_message((String)yaml.dump(e));
 	}
 
 	public static final Random gen = new Random();
@@ -78,9 +97,9 @@ public class Game {
 	public void stopSleeping() {
 		TimerTask isNotSleeping = new TimerTask() {
 			public void run() {
-			isSleeping=false;	
-			GUI.println("sleeping stoped");
-			sendGameResults();
+//			isSleeping=false;	
+//			GUI.println("sleeping stoped");
+//			sendGameResults();
 			}
 		};
 		Timer time = new Timer();

@@ -27,8 +27,8 @@ public class GUI extends JFrame {
 		
 		//setting sizes
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		int screenWidth = (int) dim.getWidth();
-		int screenHeight = (int) dim.getHeight();
+		int screenWidth = (int) 700;
+		int screenHeight = (int) 200;
 		setSize(screenWidth,screenHeight);
 		
 		 //setting elements

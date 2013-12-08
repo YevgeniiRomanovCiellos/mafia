@@ -19,9 +19,6 @@ public class UserList {
 	public static void add_user( int key, User user ) {
 		user_list.put(key, user);
 		
-		
-		
-
 		response.put("action", "user-id");
 		response.put("userid", key+"");
 		

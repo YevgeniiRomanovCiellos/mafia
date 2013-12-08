@@ -41,7 +41,7 @@ public class User extends Thread {
 		try {
 			boolean work = true;
 			while (work) {
-				String str = in.readLine();
+				String str = in.readLine().replace(";;", "\n");
 				GUI.memo.append( "\n" );
 				GUI.memo.append( "Excepted:" );
 				GUI.memo.append( "\n" );

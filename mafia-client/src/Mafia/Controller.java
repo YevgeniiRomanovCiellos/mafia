@@ -32,7 +32,7 @@ public class Controller {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-					Map<String, String> m = new HashMap<String, String>();
+					Map<String, Object> m = new HashMap<String, Object>();
 					m.put("action", "chat");
 					m.put("message", _model.user_name + ": "+ _view.message.getText() );
 					_model.sendMessage(m);
@@ -47,7 +47,7 @@ public class Controller {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Map<String, String> m = new HashMap<String, String>();
+				Map<String, Object> m = new HashMap<String, Object>();
 				m.put("action", "ready");
 				_model.sendMessage(m);
 				_view.active.setEnabled(false);

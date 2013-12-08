@@ -41,8 +41,8 @@ public class View extends JFrame {
 		
 		//setting sizes
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		int screenWidth = (int) dim.getWidth();
-        int screenHeight = (int) dim.getHeight();
+		int screenWidth = (int) 700;
+        int screenHeight = (int) 700;
         this.setSize(screenWidth,screenHeight);
         
         //setting elements
@@ -79,34 +79,33 @@ public class View extends JFrame {
 		grouping.setLayout(new GridLayout(1,2));
         grouping.add(cardPanel);
         grouping.add(chatPanel);
-		
+        
 		
 		c.add(gamePanel);
 		c.add(grouping);
-		
-		
-//////testing
-		
-		
-		ImageIcon icon = new ImageIcon("C:/Users/Xbox/Documents/GitHub/mafia/mafia-client/res/civilian.jpg");
-		
-		card.setIcon(icon);
-		card.setText("11");
-		
-		card.setSize(100,100);
-		
-		View.gamePanel.add(new JLabel("test"));
-		View.gamePanel.add(new JLabel("test"));
-		View.gamePanel.add(new JLabel("test"));
-		View.gamePanel.add(new JLabel("test"));
-		View.gamePanel.add(new JLabel("test"));
-		View.gamePanel.add(new JLabel("test"));
-		
-		
+				
 
 	}
 	
 
+	
+	public static void addCard(String uname) {
+		new Card(gamePanel, uname);
+	}
+	
+}
+
+
+
+class Card extends JPanel
+{
+	public Card(JPanel parent, String uname)
+	{	
+		setLayout(new GridLayout(1,2));
+		add(new JLabel(uname));
+		add(new JButton("make action"));
+		parent.add(this);
+	}
 }
 
 
