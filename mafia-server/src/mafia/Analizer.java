@@ -5,6 +5,7 @@ import java.util.Map;
 import org.yaml.snakeyaml.Yaml;
 
 public class Analizer {
+	
 	protected static Yaml yaml = new Yaml();
 	public static void analize ( Map<String, String> response, User user){
 		
@@ -36,6 +37,7 @@ public class Analizer {
 			}
 		}
 		if (action == "game-action"){
+			
 			
 		}
 		
