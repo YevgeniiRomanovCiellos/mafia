@@ -13,7 +13,6 @@ public class Main {
 
 
 		m=new Model(JOptionPane.showInputDialog("Enter username"));
-		String str;
 		v=new View(m);
 		c=new Controller(v,m);
 		

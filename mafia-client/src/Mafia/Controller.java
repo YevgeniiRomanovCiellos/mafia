@@ -34,7 +34,7 @@ public class Controller {
 
 					Map<String, String> m = new HashMap<String, String>();
 					m.put("action", "chat");
-					m.put("message", _view.message.getText() );
+					m.put("message", _model.user_name + ": "+ _view.message.getText() );
 					_model.sendMessage(m);
 				
 			}});

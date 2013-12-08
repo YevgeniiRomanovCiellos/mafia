@@ -6,6 +6,7 @@ import org.yaml.snakeyaml.Yaml;
 
 public class Analizer {
 	
+	protected static Game game = null;
 	protected static Yaml yaml = new Yaml();
 	public static void analize ( Map<String, String> response, User user){
 		
@@ -31,15 +32,27 @@ public class Analizer {
 			UserList.ready_users.put(user.port, user);
 			if(UserList.isUsersReady()){
 				try {
-					new Game();
+					game  = new Game();
 				} catch (InterruptedException e) {
 					// TODO Автоматически созданный блок catch
 					e.printStackTrace();
 				}
 			}
 		}
-		if (action == "game-action"){
-			
+		
+		if (action.equals( "game-action")){
+			if (game.isSleeping) {
+				String userfrom = game.cards.get(response.get("userfrom"));
+				
+				if (userfrom.equals("mafia")){
+					game.night_actions.put("kill", response.get("userto"));
+				}
+				
+				if (userfrom.equals("doctor")){
+					game.night_actions.put("hill", response.get("userto"));
+				}
+				//recive user messages
+			}
 			
 		}
 		
@@ -51,6 +64,7 @@ public class Analizer {
 		
 		} catch (Exception e) {
 			System.out.println(e);
+			e.printStackTrace();
 		}
 		
 	}
