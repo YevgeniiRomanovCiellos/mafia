@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
@@ -116,8 +117,11 @@ class Card extends JPanel
 		username = user.get("username");
 		setLayout(new GridLayout(1,2));
 
-		ImageIcon icon = new ImageIcon();
-		 icon = (ImageIcon) UIManager.getIcon("OptionPane.questionIcon");
+		
+		String path = "suit.jpg";
+		URL imgURL = Main.class.getResource(path);
+		ImageIcon icon = new ImageIcon(imgURL);
+
 		JLabel l=new JLabel();
 		l.setIcon(icon);
 		add(l);

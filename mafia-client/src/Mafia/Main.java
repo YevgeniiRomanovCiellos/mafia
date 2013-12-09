@@ -18,6 +18,7 @@ public class Main {
 		v=new View(m);
 		c=new Controller(v,m);
 		
+		
 		v.show();
 	}
 
