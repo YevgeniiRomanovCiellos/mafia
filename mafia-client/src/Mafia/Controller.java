@@ -52,7 +52,7 @@ public class Controller {
 				m.put("action", "ready");
 				_model.sendMessage(m);
 				_view.active.setEnabled(false);
-				_view.active.setText("Loading");
+				_view.active.setText("Actived");
 			}
 		});
 	}

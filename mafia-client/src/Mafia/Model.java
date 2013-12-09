@@ -5,7 +5,9 @@ import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
 import java.net.Socket;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -159,9 +161,38 @@ public class Model extends Thread {
 
 	private void setRole() {
 		// роль юзера тут -> user_role
+		
+		
+		
+		
 		View.card.setText(user_name);
-		ImageIcon icon = new ImageIcon("C:/Users/Xbox/Documents/GitHub/mafia/mafia-client/res/civilian.jpg");
+		if(user_role.equals("civilian"))
+		{
+			String path = "civilian.jpg";
+			URL imgURL = Main.class.getResource(path);
+			ImageIcon icon = new ImageIcon(imgURL);
+		//ImageIcon icon1 = new ImageIcon("C:/Users/moskra/Documents/GitHub/mafia/mafia-client/src/Mafia/civilian.jpg");
+		
 		View.card.setIcon(icon);
+		}
+		if(user_role.equals("mafia"))
+		{
+			String path = "mafia.jpg";
+			URL imgURL = Main.class.getResource(path);
+			ImageIcon icon = new ImageIcon(imgURL);
+			//ImageIcon icon1 = new ImageIcon("C:/Users/moskra/Documents/GitHub/mafia/mafia-client/src/Mafia/mafia.jpg");
+			View.card.setIcon(icon);
+		}
+		if(user_role.equals("doctor"))
+		{
+			String path = "doctor.jpg";
+			URL imgURL = Main.class.getResource(path);
+			ImageIcon icon = new ImageIcon(imgURL);
+			//ImageIcon icon1 = new ImageIcon("C:/Users/moskra/Documents/GitHub/mafia/mafia-client/src/Mafia/doctor.jpg");
+			View.card.setIcon(icon);
+		}
+			
+		
 	}
 
 	public void sendMessage(Map<String, Object> m) {

@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 
 public class View extends JFrame {
 
@@ -54,7 +55,7 @@ public class View extends JFrame {
         c=getContentPane();
 		c.setLayout(new GridLayout(2,2));
 		
-		memo=new JTextArea(20,50);
+		memo=new JTextArea(15,30);
 		scrollBar = new JScrollPane(memo);
 		
 		send=new JButton("Send");
@@ -113,12 +114,18 @@ class Card extends JPanel
 	{	
 		username = user.get("username");
 		setLayout(new GridLayout(1,2));
+
+		ImageIcon icon = new ImageIcon();
+		 icon = (ImageIcon) UIManager.getIcon("OptionPane.questionIcon");
+		JLabel l=new JLabel();
+		l.setIcon(icon);
+		add(l);
 		add(new JLabel(user.get("username")));
-		
 		if (!View._model.user_role.equals("civilian")) {
 			addAction(btn, user.get("userid"));
 			add(btn);
 		}
+
 		parent.add(this);
 	}
 	
