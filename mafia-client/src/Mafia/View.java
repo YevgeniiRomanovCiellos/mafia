@@ -109,6 +109,7 @@ public class View extends JFrame {
 class Card extends JPanel
 {
 	JButton btn = new JButton("make action");
+	JButton vote = new JButton("Vote against");
 	String username;
 	public Card(JPanel parent, Map<String, String>  user)
 	{	
@@ -125,11 +126,29 @@ class Card extends JPanel
 			addAction(btn, user.get("userid"));
 			add(btn);
 		}
+		vouting(vote,user.get("username"));
+		add(vote);
 
 		parent.add(this);
 	}
 	
+	void vouting(Object obj, final String userid) {
+		vote.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Map<String, Object> m = new HashMap<String, Object>();
+				m.put("action", "vote");
+				m.put("userfrom",View._model.user_id );
+				m.put("userto", userid );
+				enableCards1(false);	
+				
+			}
+		});
+	}
+	
 	void addAction(Object obj, final String userid){
+		
+		
 		btn.addActionListener(new ActionListener(){
 
 			@Override
@@ -154,8 +173,14 @@ class Card extends JPanel
 		for (Card value : View.cards.values()) {
 			value.btn.setEnabled(s);
 		}
+	}
 		
-		
+	void enableCards1(boolean s){
+			
+			
+			for (Card value : View.cards.values()) {
+				value.vote.setEnabled(s);
+			}
 	}
 }
 

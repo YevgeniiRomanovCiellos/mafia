@@ -1,5 +1,6 @@
 package mafia;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.yaml.snakeyaml.Yaml;
@@ -67,8 +68,16 @@ public class Analizer {
 				}
 				
 				if (action.equals("vote")) {
-					
-				}
+					String userAgainstVote = response.get("userto");
+					if (game.vouting.containsKey(userAgainstVote)){
+					int v=game.vouting.get(userAgainstVote);
+					v++;
+					game.vouting.put(userAgainstVote, v);
+					}
+					else {
+						game.vouting.put(userAgainstVote, 1);
+						}
+					}
 			}
 		} catch (Exception e) {
 			System.out.println(e);

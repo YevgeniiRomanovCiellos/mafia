@@ -140,6 +140,10 @@ public class Model extends Thread {
 						 
 					}
 					
+					if (action.equals("voteResult")) {
+						View.cards.remove(response.get("userid"));
+					}
+					
 					
 					sleep(10);
 				}

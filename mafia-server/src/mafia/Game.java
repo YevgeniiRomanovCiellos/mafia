@@ -13,7 +13,8 @@ import org.yaml.snakeyaml.Yaml;
 public class Game {
 	boolean isSleeping = true;
 	public Map<String, String> night_actions = new HashMap<String, String>();// actoin
-																				// :
+	public Map <String,Integer> vouting = new HashMap<String,Integer>();
+																			// :
 																				// user_id
 	public Map<String, String> cards = new HashMap<String, String>(); // role:
 																		// userid
@@ -135,6 +136,21 @@ public class Game {
 		result.put("hilled_id", hilled);
 		UserList.send_message(yaml.dump(result));
 
+	}
+	
+	public void resultOfVouting(){
+		int max=0;
+		String user=null;
+		for (Map.Entry<String, Integer> entry : vouting.entrySet()) {
+			if(entry.getValue()>max){
+				max=entry.getValue();
+				user=entry.getKey();
+			}
+		Map <String,String> voteResp = new HashMap <String, String>();
+		voteResp.put("action", "voteResult");
+		voteResp.put("userid", user);
+		UserList.send_message(yaml.dump(voteResp));
+		}
 	}
 
 }
