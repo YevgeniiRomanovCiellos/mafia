@@ -120,7 +120,6 @@ class Card extends JPanel
 		String path = "suit.jpg";
 		URL imgURL = Main.class.getResource(path);
 		ImageIcon icon = new ImageIcon(imgURL);
-		
 		JLabel l=new JLabel();
 		l.setIcon(icon);
 		add(l);
