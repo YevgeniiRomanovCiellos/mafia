@@ -73,20 +73,20 @@ public class Model extends Thread {
 				System.out.println(str);
 				response = (HashMap<String, Object>) yaml.load(str);
 				if (response != null) {
-					
+					String action = (String)response.get("action");
 					System.out.println("LOL ");
-					if (response.get("action").equals("chat")) {
+					if (action.equals("chat")) {
 						View.memo.append(response.get("message").toString());
 						View.memo.append("\n");
 
 					}
 					
 					//
-					if(response.get("action").equals("user-id")){
+					if(action.equals("user-id")){
 						user_id = response.get("userid").toString();						
 					}
 					
-					if (response.get("action").equals("sendRoles"))
+					if (action.equals("sendRoles"))
 					{
 						ArrayList<Map> roles = (ArrayList<Map>) response.get("roles");
 						Map<String, String>	user = new HashMap<String, String>();
@@ -101,7 +101,7 @@ public class Model extends Thread {
 							}
 							
 							else {
-							 View.addCard(user.get("username"));
+							 View.addCard(user);
 							}
 								
 							
@@ -109,6 +109,12 @@ public class Model extends Thread {
 						}
 						
 					}
+					
+					if (action.equals("game-results")) {
+						
+					}
+					
+					
 					sleep(10);
 				}
 				

@@ -5,6 +5,10 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -19,7 +23,7 @@ import javax.swing.JTextField;
 
 public class View extends JFrame {
 
-	private Model _model;
+	public static Model _model;
 	
 	public static GamePane gamePanel;
 	public ChatPane chatPanel;
@@ -30,6 +34,7 @@ public class View extends JFrame {
 	public static JTextArea memo;
 	public JScrollPane scrollBar;
 	public static JLabel card;
+	public static Map<String, Object> cards = new HashMap<String, Object>();
 	
 	
 	
@@ -89,9 +94,12 @@ public class View extends JFrame {
 	
 
 	
-	public static void addCard(String uname) {
-		new Card(gamePanel, uname);
+	public static void addCard(Map<String, String> user) {
+		cards.put(user.get("userid"), new Card(gamePanel, user));
 	}
+
+
+
 	
 }
 
@@ -99,12 +107,30 @@ public class View extends JFrame {
 
 class Card extends JPanel
 {
-	public Card(JPanel parent, String uname)
+	JButton btn = new JButton("make action");
+	public Card(JPanel parent, Map<String, String>  user)
 	{	
 		setLayout(new GridLayout(1,2));
-		add(new JLabel(uname));
-		add(new JButton("make action"));
+		add(new JLabel(user.get("username")));
+		addAction(btn, user.get("userid"));
+		add(btn);
 		parent.add(this);
+	}
+	
+	void addAction(Object obj, final String userid){
+		btn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+					Map<String, Object> m = new HashMap<String, Object>();
+					m.put("action", "game-action");
+					m.put("userfrom",View._model.user_id );
+					m.put("userto", userid );
+					
+					View._model.sendMessage(m);
+				
+			}});
 	}
 }
 

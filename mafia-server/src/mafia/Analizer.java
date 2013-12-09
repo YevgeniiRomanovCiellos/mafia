@@ -40,6 +40,8 @@ public class Analizer {
 				}
 
 				if (action.equals("game-action")) {
+					GUI.println("ACttion perfomed!!!!!!!!!!");
+					GUI.println(response.toString());
 					if (game.isSleeping) {
 						String userfrom = game.cards.get(response
 								.get("userfrom"));

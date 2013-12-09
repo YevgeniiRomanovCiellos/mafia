@@ -15,16 +15,14 @@ import javax.swing.*;
 
 public class GUI extends JFrame {
 
-	int port;
+
 	JButton start,stop;
 	public static Container c;
 	public static JTextArea memo;
 	public JScrollPane scrollBar;
 	
 	public GUI() {
-		// TODO Auto-generated method stub
-		this.port=port;
-		
+
 		//setting sizes
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		int screenWidth = (int) 700;
