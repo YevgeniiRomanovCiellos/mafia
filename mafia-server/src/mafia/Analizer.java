@@ -65,6 +65,10 @@ public class Analizer {
 					GUI.println("Add username");
 					GUI.println(user.username);
 				}
+				
+				if (action.equals("vote")) {
+					
+				}
 			}
 		} catch (Exception e) {
 			System.out.println(e);

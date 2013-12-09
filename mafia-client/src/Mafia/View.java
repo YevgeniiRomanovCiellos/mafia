@@ -34,7 +34,7 @@ public class View extends JFrame {
 	public static JTextArea memo;
 	public JScrollPane scrollBar;
 	public static JLabel card;
-	public static Map<String, Object> cards = new HashMap<String, Object>();
+	public static Map<String, Card> cards = new HashMap<String, Card>();
 	
 	
 	
@@ -108,12 +108,17 @@ public class View extends JFrame {
 class Card extends JPanel
 {
 	JButton btn = new JButton("make action");
+	String username;
 	public Card(JPanel parent, Map<String, String>  user)
 	{	
+		username = user.get("username");
 		setLayout(new GridLayout(1,2));
 		add(new JLabel(user.get("username")));
-		addAction(btn, user.get("userid"));
-		add(btn);
+		
+		if (!View._model.user_role.equals("civilian")) {
+			addAction(btn, user.get("userid"));
+			add(btn);
+		}
 		parent.add(this);
 	}
 	
@@ -121,19 +126,31 @@ class Card extends JPanel
 		btn.addActionListener(new ActionListener(){
 
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
-
+			public void actionPerformed(ActionEvent arg0) {		
 					Map<String, Object> m = new HashMap<String, Object>();
 					m.put("action", "game-action");
 					m.put("userfrom",View._model.user_id );
 					m.put("userto", userid );
 					
 					View._model.sendMessage(m);
-				
-			}});
+					enableCards(false);
+					
+			}
+
+	}
+		
+	);
+}
+	void enableCards(boolean s){
+		
+		
+		for (Card value : View.cards.values()) {
+			value.btn.setEnabled(s);
+		}
+		
+		
 	}
 }
-
 
 class GamePane extends JPanel
 {

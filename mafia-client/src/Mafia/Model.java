@@ -2,7 +2,6 @@ package Mafia;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
- 
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -13,6 +12,7 @@ import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import org.yaml.snakeyaml.*;
 
@@ -55,11 +55,8 @@ public class Model extends Thread {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 			start();
-
 		}
-
 	}
 
 	public void run() {
@@ -98,20 +95,47 @@ public class Model extends Thread {
 							if (user.get("userid").equals(user_id)){
 								user_role = user.get("role");
 								setRole();		
+							}			
+						
+						}
+						
+						
+						for (int i = 0; i < roles.size(); i++) {
+							user = roles.get(i);
+					 
+							if (user.get("userid").equals(user_id)){
+								user_role = user.get("role");
+								setRole();		
 							}
 							
 							else {
 							 View.addCard(user);
 							}
 								
-							
 						
 						}
 						
 					}
 					
 					if (action.equals("game-results")) {
-						
+						String killed= null, hilled= null, message = null;
+						 killed = (String)response.get("killed_id");
+						 hilled = (String)response.get("hilled_id");
+						 System.out.println(killed); System.out.println(hilled);
+						 if (killed == null) {
+							message += "Nobody was killed."; 
+						 } else {
+							 message += "Today " + View.cards.get(killed).username +" was killed";
+						}
+						 
+						 if (hilled == null) {
+								message += "Nobody was hilled"; 
+						 }else {
+							 message += " Today " + View.cards.get(killed).username +" was hilled";
+						}
+						 
+						 JOptionPane.showMessageDialog(null, message);
+						 
 					}
 					
 					

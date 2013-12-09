@@ -48,7 +48,7 @@ public class Game {
 		int i = 0;
 		for (User value : UserList.ready_users.values()) {
 			value.role = roles[i];
-			cards.put(value.role, value.port + "");
+			cards.put( value.port + "", value.role);
 			i++;
 		}
 	}
@@ -78,7 +78,7 @@ public class Game {
 		GUI.println("Sending roles");
 		GUI.println((String) yaml.dump(e));
 		UserList.send_message((String) yaml.dump(e));
-	}
+	 }
 
 	public static final Random gen = new Random();
 
@@ -101,26 +101,35 @@ public class Game {
 			}
 		};
 		Timer time = new Timer();
-		time.schedule(isNotSleeping, 10000);
+		time.schedule(isNotSleeping, 20000);
 	}
 
 	public void sendGameResults() {
 		Map<String, String> result = new HashMap<String, String>();
-		String killed, hilled = null;
+		String doctor = null, killed, hilled = null;
 		result.put("action", "game-results");
 
 		killed = night_actions.get("hill");
 		hilled = night_actions.get("kill");
-//		if ((killed != null) && (hilled != null)) {
-//
-//			if (killed.equals(hilled)) {
-//				killed = null;
-//			}
-//
-//			if (killed.equals(cards.get("doctor"))) {
-//				hilled = null;
-//			}
-//		}
+		
+		for (Map.Entry<String, String> entry : cards.entrySet()) {
+            if (entry.getValue().equals("doctor")) {
+                doctor = entry.getKey();
+            }
+        }
+		
+
+		if ((killed != null) && (hilled != null)) {
+
+			if (killed.equals(hilled)) {
+				killed = null;
+			}
+
+			if (killed.equals(doctor)) {
+				hilled = null;
+			}
+
+		}
 
 		result.put("killed_id", killed);
 		result.put("hilled_id", hilled);
