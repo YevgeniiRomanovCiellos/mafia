@@ -138,34 +138,34 @@ public class Model extends Thread {
 	private void setRole() {
 		// роль юзера тут -> user_role
 		
-		String path = "icon1.png";
-		URL imgURL;
-		try {
-			imgURL = new URL(path);
-			ImageIcon icon = new ImageIcon(imgURL);
-			View.card.setIcon(icon);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		
 		
 		View.card.setText(user_name);
 		if(user_role.equals("civilian"))
 		{
-		ImageIcon icon1 = new ImageIcon("C:/Users/moskra/Documents/GitHub/mafia/mafia-client/src/Mafia/civilian.jpg");
+			String path = "civilian.jpg";
+			URL imgURL = Main.class.getResource(path);
+			ImageIcon icon = new ImageIcon(imgURL);
+		//ImageIcon icon1 = new ImageIcon("C:/Users/moskra/Documents/GitHub/mafia/mafia-client/src/Mafia/civilian.jpg");
 		
-		View.card.setIcon(icon1);
+		View.card.setIcon(icon);
 		}
 		if(user_role.equals("mafia"))
 		{
-			ImageIcon icon1 = new ImageIcon("C:/Users/moskra/Documents/GitHub/mafia/mafia-client/src/Mafia/mafia.jpg");
-			View.card.setIcon(icon1);
+			String path = "mafia.jpg";
+			URL imgURL = Main.class.getResource(path);
+			ImageIcon icon = new ImageIcon(imgURL);
+			//ImageIcon icon1 = new ImageIcon("C:/Users/moskra/Documents/GitHub/mafia/mafia-client/src/Mafia/mafia.jpg");
+			View.card.setIcon(icon);
 		}
 		if(user_role.equals("doctor"))
 		{
-			ImageIcon icon1 = new ImageIcon("C:/Users/moskra/Documents/GitHub/mafia/mafia-client/src/Mafia/doctor.jpg");
-			View.card.setIcon(icon1);
+			String path = "doctor.jpg";
+			URL imgURL = Main.class.getResource(path);
+			ImageIcon icon = new ImageIcon(imgURL);
+			//ImageIcon icon1 = new ImageIcon("C:/Users/moskra/Documents/GitHub/mafia/mafia-client/src/Mafia/doctor.jpg");
+			View.card.setIcon(icon);
 		}
 			
 		
