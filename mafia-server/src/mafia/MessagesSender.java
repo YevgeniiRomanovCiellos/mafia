@@ -22,7 +22,7 @@ public class MessagesSender extends Thread {
 					GUI.println(message);
 					UserList.messages_list.remove(0);
 				}
-				sleep(1000);
+				sleep(100);
 			}
 		} catch (Exception e) {
 			System.out.println("Exception Rised!!!");

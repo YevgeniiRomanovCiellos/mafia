@@ -11,8 +11,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
-import java.util.TimerTask;
-
+ 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -98,9 +97,8 @@ public class View extends JFrame {
 	
 	public static void addCard(Map<String, String> user) {
 		cards.put(user.get("userid"), new Card(gamePanel, user));
+		gamePanel.setSize(gamePanel.getSize());
 	}
-
-
 
 	
 }
@@ -131,6 +129,8 @@ class Card extends JPanel
 			add(btn);
 		}
 		vouting(vote,user.get("username"));
+		
+		vote.setEnabled(false);
 		add(vote);
 
 		parent.add(this);
@@ -144,7 +144,7 @@ class Card extends JPanel
 				m.put("action", "vote");
 				m.put("userfrom",View._model.user_id );
 				m.put("userto", userid );
-				enableCards1(false);	
+				Main.c.enableVoteButtons(false);	
 				
 			}
 		});
@@ -163,7 +163,7 @@ class Card extends JPanel
 					m.put("userto", userid );
 					
 					View._model.sendMessage(m);
-					enableCards(false);
+					Main.c.enableCards(false);
 					
 			}
 
@@ -171,21 +171,7 @@ class Card extends JPanel
 		
 	);
 }
-	void enableCards(boolean s){
-		
-		
-		for (Card value : View.cards.values()) {
-			value.btn.setEnabled(s);
-		}
-	}
-		
-	void enableCards1(boolean s){
-			
-			
-			for (Card value : View.cards.values()) {
-				value.vote.setEnabled(s);
-			}
-	}
+
 }
 
 class GamePane extends JPanel

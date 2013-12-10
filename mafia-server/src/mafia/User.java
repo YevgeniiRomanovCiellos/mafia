@@ -42,9 +42,8 @@ public class User extends Thread {
 			boolean work = true;
 			while (work) {
 				String str = in.readLine().replace(";;", "\n");
-				GUI.memo.append( "\n" );
-				GUI.memo.append( "Excepted:" );
-				GUI.memo.append( "\n" );
+				GUI.memo.append( "Server recived message:" );
+				GUI.println( str );
 				if (str == "END") {
 					socket.close();
 					UserList.user_list.remove(port);
@@ -52,15 +51,12 @@ public class User extends Thread {
 					break;
 				} else {
 					
-					GUI.memo.append( str );
+					
 					Map<String, String> response;
 					
 					response = (HashMap<String, String>) yaml.load(str);
 					Analizer.analize(response, this);
 					
-					
-				//	UserList.send_message((String) yaml.dump(response));
-
 				}
 			}
 		} catch (IOException e) {

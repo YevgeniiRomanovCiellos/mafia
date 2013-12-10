@@ -56,7 +56,6 @@ public class Analizer {
 							game.night_actions.put("hill",
 									response.get("userto"));
 						}
-						// recive user messages
 					}
 
 				}
