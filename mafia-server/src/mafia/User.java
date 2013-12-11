@@ -37,6 +37,19 @@ public class User extends Thread {
 		UserList.add_user(port, this);
 	}
 
+	public void deactivate()
+	{
+		try {
+			socket.getInputStream().close();
+			socket.getOutputStream().close();
+			socket.close();
+			
+			GUI.println("Socket closed!!!");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public void run() {
 		try {
 			boolean work = true;

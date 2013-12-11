@@ -27,18 +27,21 @@ public class Model extends Thread {
 
 	private BufferedReader in;
 	public PrintWriter out;
-
+	String adress;
 	private Yaml yaml = new Yaml();
 
 	Map<String, Object> response = new HashMap<String, Object>();
 
-	public Model(String showInputDialog) {
+	public Model(String name,String port, String adres) {
 		{
 
-			user_name = showInputDialog;
+			user_name = name;
+			this.port=Integer.parseInt(port);
+			adress=adres;
 
 			try {
-				c = new Socket("127.0.0.1", 8080);
+				
+				c = new Socket(adress, 8080);
 
 				System.out.println("Server  connected");
 
@@ -68,14 +71,13 @@ public class Model extends Thread {
 		String str;
 		while (true) {
 			try {
+				 if (c.isConnected()) {
 				System.out.println("Server litsening... ");
 				str = in.readLine().replace(";;", "\n");
 				System.out.println("Message Exepted ");
 				System.out.println(str);
-				if (str == "END") {
-					c.close();
-					break;
-				}
+				
+				
 				response = (HashMap<String, Object>) yaml.load(str);
 				
 				if (response != null) {
@@ -158,7 +160,12 @@ public class Model extends Thread {
 
 					sleep(10);
 				}
-
+				
+				 }
+				 else{
+					 c.close();
+					 JOptionPane.showMessageDialog(null,"вязь прервана!");
+				 }
 			} catch (NullPointerException e) {
 				System.out.println("Exception log START..");
 				System.out.println(user_id);
